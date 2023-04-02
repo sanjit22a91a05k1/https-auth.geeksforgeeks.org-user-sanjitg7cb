@@ -1,0 +1,34 @@
+int maximum(int *arr, int n)
+{
+    int max=arr[0];
+    for(int i=0; i<n; i++)
+    {
+        if(max<arr[i])
+        max=arr[i];
+    }
+    return max;
+}
+void radixSort(int arr[], int n) 
+{
+int maxi=maximum(arr,n);
+maxi++;
+int frq[10000]={0};
+for(int i=0; i<n; i++)
+{
+    frq[arr[i]]++;
+}
+for(int i=1; i<10000; i++)
+{
+    frq[i]=frq[i]+frq[i-1];
+}
+int b[n];
+for(int i=n-1; i>=0; i--)
+{
+    frq[arr[i]]--;
+    b[frq[arr[i]]]=arr[i];
+}
+for(int i=0; i<n; i++)
+{
+    arr[i]=b[i];
+}
+} 
