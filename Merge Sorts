@@ -1,0 +1,60 @@
+class Solution
+{
+    public:
+    void merge(int arr[], int l, int m, int r)
+    {
+         // Your code here
+         int n=r-l+1;
+         int b[n];
+         int i=l;
+         int j=m+1;
+         int k=0;
+         while(i<=m && j<=r)
+         {
+             if(arr[i]<=arr[j])
+             {
+             b[k]=arr[i];
+             k++;
+             i++;
+             }
+             else
+             {
+             b[k]=arr[j];
+             j++;
+             k++;
+             
+             }
+         }
+         while(j<=r)
+         {
+             b[k]=arr[j];
+             j++;
+             k++;
+         }
+         while(i<=m)
+         {
+             b[k]=arr[i];
+             k++;
+             i++;
+             
+         }
+     
+         for(int k=0; k<n; k++)
+         {
+            arr[k+l]=b[k];
+         }
+         
+    }
+    public:
+    void mergeSort(int arr[], int l, int r)
+    {
+        //code here
+        if(l>=r)
+        return ;
+       int m=(l+r)/2 ;
+       mergeSort (arr,l,m);
+        mergeSort(arr,m+1,r);
+        merge(arr,l,m,r);
+        
+    }
+};
